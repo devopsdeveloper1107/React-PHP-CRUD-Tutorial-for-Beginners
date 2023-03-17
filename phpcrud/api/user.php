@@ -46,8 +46,7 @@ switch($method)
         echo json_encode(["result"=>"Please check the Data"]); 
         return;
     }
-  }
-   
+  }   
     break;
 
     case "POST":
@@ -68,7 +67,6 @@ switch($method)
             echo json_encode(["success"=>"Please Check the User Data!"]);
             return; 
         }
-
         break;
     
          case "PUT":
@@ -87,11 +85,24 @@ switch($method)
            } else {
                echo json_encode(["success"=>"Please Check the User Data!"]);
                return; 
-           }         
-
+           }
+         // print_r($userUpdate); die;
           break;
 
-         
+          case "DELETE":
+            $path= explode('/', $_SERVER["REQUEST_URI"]);
+            //echo "message userid------".$path[4]; die;
+            $result= mysqli_query($db_conn, "DELETE FROM tbl_user WHERE userid= '$path[4]' ");
+            if($result)
+            {
+              echo json_encode(["success"=>"User Record Deleted Successfully"]);
+              return;
+            } else {
+              echo json_encode(["Please Check the User Data!"]);
+              return;
+            }
+
+          break;         
 
 }
 
