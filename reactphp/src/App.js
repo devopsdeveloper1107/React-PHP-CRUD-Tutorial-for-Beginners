@@ -6,6 +6,8 @@ import Home from './Component/Home';
 import Userlist from './Component/Userlist';
 import Adduser from './Component/Adduser';
 import Edituser from './Component/Edituser';
+import Addproduct from './Component/Addproduct';
+import Productlist from './Component/Productlist';
 import Footer from './Component/Footer';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <Route path="/userlist" element= { <Userlist/> } />
       <Route path="/adduser" element= { <Adduser/> } />
       <Route path="/edituser/:id" element= { <Edituser/> } />
+      <Route path="/addproduct/" element= { <Addproduct/> } />
+      <Route path="/productlist/" element= { <Productlist/> } />
 
       </Routes>
       <Footer/>    
@@ -25,3 +29,4 @@ function App() {
 }
 
 export default App;
+
