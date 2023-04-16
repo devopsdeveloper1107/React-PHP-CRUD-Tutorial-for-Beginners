@@ -16,15 +16,42 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch($method)
 {
     case "GET": 
-      echo "Get Api"; die;
+      $path= explode('/', $_SERVER['REQUEST_URI']);
+
+      if(isset($path[4]) && is_numeric($path[4]))
+      {
+        echo "Get Api Single Row"; die;
+      } else {
+       //echo "return all Data"; die;
+       $destination= $_SERVER['DOCUMENT_ROOT']."/reactcrudphp"."/";
+       $allproduct= mysqli_query($db_conn, "SELECT * FROM tbl_product");
+       if(mysqli_num_rows($allproduct) > 0)
+       {
+          while($row= mysqli_fetch_array($allproduct))
+          {
+           $json_array["productdata"][]= array("id"=>$row['p_id'], 
+           "ptitle"=>$row["ptitle"],
+           "pprice"=>$row["pprice"],
+           "pimage"=>$row["pfile"],
+           "status"=>$row["pstatus"]
+          );
+          }
+          echo json_encode($json_array["productdata"]);
+          return;
+       } else {
+        echo json_encode(["result"=>"please check the Data"]);
+        return;
+       }
+
+
+      }
+      
        
     break;
 
     case "POST":
-
       if(isset($_FILES['pfile']))
-      {
-      
+      {      
         $ptitle= $_POST['ptitle'];
         $pprice= $_POST['pprice'];
         $pfile= time().$_FILES['pfile']['name'];
