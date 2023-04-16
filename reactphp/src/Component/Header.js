@@ -22,6 +22,12 @@ function Header()
             <li className="nav-item">
               <NavLink to="/adduser" className="nav-link">Add User</NavLink>
             </li> 
+            <li className="nav-item">
+              <NavLink to="/productlist" className="nav-link"> Product List</NavLink>
+            </li> 
+            <li className="nav-item">
+              <NavLink to="/addproduct" className="nav-link">Add Product</NavLink>
+            </li> 
         
 
          

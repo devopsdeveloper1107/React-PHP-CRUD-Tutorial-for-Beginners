@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Addproduct()
-{   
-
+{  
     const navigate= useNavigate();
     const[ptitle, setPtitle]= useState('');
     const[pprice, setPprice]= useState('');
@@ -30,11 +29,11 @@ function Addproduct()
         }
     }
 
-const handleSubmit= async(e)=>{
-    e.preventDefault();
-    await uploadProduct();
+    const handleSubmit= async(e)=>{
+      e.preventDefault();
+      await uploadProduct();
 
-}
+   }
     return(
     <React.Fragment>
         <div className="container">

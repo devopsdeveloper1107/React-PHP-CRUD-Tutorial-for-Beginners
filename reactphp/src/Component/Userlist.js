@@ -7,17 +7,21 @@ function Userlist()
 { 
     const [userData, setUserData]= useState([]);
     const [message, setMessage]= useState('');
-    useEffect( ()=>{     
-    const getUserData= async()=>{
+   
+    useEffect( ()=>{   
+    getUserData();
+    },[]);
+
+ const getUserData= async()=>{
     const reqData= await fetch("http://localhost/reactcrudphp/api/user.php");
     const resData= await reqData.json();           
     setUserData(resData);
-} 
- },[]);
+     } 
 
  const handleDelete= async(id)=>{
    const res= await axios.delete("http://localhost/reactcrudphp/api/user.php/"+id);
-   setMessage(res.data.success);   
+   setMessage(res.data.success);
+   getUserData();   
  }
 
        return(
